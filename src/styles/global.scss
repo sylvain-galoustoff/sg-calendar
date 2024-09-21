@@ -98,13 +98,6 @@ body,
   border-top-left-radius: 8px;
 }
 
-#previous-month,
-#next-month {
-  svg {
-    position: relative;
-  }
-}
-
 #year-select {
   display: flex;
   justify-content: center;
@@ -115,18 +108,77 @@ body,
 }
 
 /* GRID */
+#grid-container {
+  flex: 1;
+  border-bottom-left-radius: $corner;
+  border-bottom-right-radius: $corner;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+#weekdays {
+  grid-column-start: 1;
+  grid-column-end: 8;
+  display: grid;
+  gap: 2px;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.weekday {
+  padding: 16px;
+  color: $textLight;
+}
+
 #grid {
   flex: 1;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 2px;
-  border-bottom-left-radius: $corner;
-  border-bottom-right-radius: $corner;
-  overflow: hidden;
+
+  .cell {
+    color: $textLight;
+
+    &:hover {
+      background-color: $cardAlt;
+    }
+
+    &.empty {
+      &:hover {
+        background-color: $card;
+      }
+    }
+
+    &.today {
+      &:hover {
+        background-color: $primary;
+      }
+    }
+  }
+}
+
+.cell-value {
+  width: 44px;
+  aspect-ratio: 1;
+  border-radius: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $card;
+}
+
+.today {
+  background-color: $primary;
 }
 
 /* SIDEBAR */
 #sidebar {
   @include dev;
   width: 33.33%;
+}
+
+#selected-date {
+  padding: 32px;
+  justify-content: flex-start;
 }

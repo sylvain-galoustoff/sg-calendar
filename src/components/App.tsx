@@ -1,5 +1,5 @@
 import Calendar from "./Calendar/Calendar";
-import Sidebar from "./Sidebar";
+import Sidebar from "./Sidebar/Sidebar";
 import UserBar from "./UserBar";
 
 function App() {
