@@ -28,11 +28,18 @@ body,
   @include dev;
 }
 
-body {
+#app {
   padding: 32px;
   display: flex;
   flex-direction: column;
   gap: 32px;
+}
+
+#app-content {
+  @include dev;
+  flex: 1;
+  display: flex;
+  gap: 32px
 }
 
 /* USER BAR */
@@ -58,4 +65,16 @@ body {
   display: flex;
   gap: 4px;
   align-items: center;
+}
+
+/* CALENDAR */
+#calendar {
+  @include dev;
+  width: 66.66%;
+}
+
+/* SIDEBAR */
+#sidebar {
+  @include dev;
+  width: 33.33%;
 }
