@@ -36,7 +36,6 @@ body,
 }
 
 #app-content {
-  @include dev;
   flex: 1;
   display: flex;
   gap: 32px
@@ -44,7 +43,6 @@ body,
 
 /* USER BAR */
 #user-bar {
-  @include dev;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -69,8 +67,62 @@ body,
 
 /* CALENDAR */
 #calendar {
-  @include dev;
   width: 66.66%;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  @include shadow;
+}
+
+.cell {
+  background-color: $card;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#date-select {
+  display: grid;
+  gap: 2px;
+  grid-template-columns: repeat(7, 1fr)
+}
+
+#month-select {
+  grid-column-start: 1;
+  grid-column-end: 6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  padding: 32px;
+  border-top-left-radius: 8px;
+}
+
+#previous-month,
+#next-month {
+  svg {
+    position: relative;
+  }
+}
+
+#year-select {
+  display: flex;
+  justify-content: center;
+  grid-column-start: 6;
+  grid-column-end: 8;
+  padding: 32px;
+  border-top-right-radius: 8px;
+}
+
+/* GRID */
+#grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  border-bottom-left-radius: $corner;
+  border-bottom-right-radius: $corner;
+  overflow: hidden;
 }
 
 /* SIDEBAR */

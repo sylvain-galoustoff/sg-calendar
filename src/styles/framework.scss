@@ -1,3 +1,13 @@
+/* FONTS */
+.big {
+  font-size: 1.2rem;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+
 /* BUTTON */
 button,
 a.button {
@@ -16,6 +26,25 @@ a.button {
 
   &.primary {
     background-color: $primary;
+    color: $card;
+  }
+}
+
+.button-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  aspect-ratio: 1;
+  border-radius: 13px;
+  cursor: pointer;
+
+  svg {
+    font-size: .9rem;
+  }
+
+  &.text {
+    background-color: $text;
     color: $card;
   }
 }
