@@ -1,3 +1,5 @@
+import Cell from "./Cell";
+
 function Grid() {
   return (
     <div id="grid-container">
@@ -11,52 +13,41 @@ function Grid() {
         <div className="bold cell weekday">Dim</div>
       </div>
       <div id="grid">
-        <div className="cell empty"></div>
-        <div className="cell empty"></div>
-        <div className="cell empty"></div>
-        <div className="cell empty"></div>
-        <div className="cell empty"></div>
-        <div className="cell empty"></div>
-        <div className="cell">31</div>
-        <div className="cell">31</div>
-        <div className="cell">31</div>
-        <div className="cell">31</div>
-        <div className="cell">31</div>
-        <div className="cell">31</div>
-        <div className="cell">31</div>
-        <div className="cell">31</div>
-        <div className="cell">31</div>
-        <div className="cell">31</div>
-        <div className="cell today">
-          <div className="cell-content">
-            <div className="span cell-value">31</div>
-          </div>
-        </div>
-        <div className="cell">31</div>
-        <div className="cell">31</div>
-        <div className="cell">31</div>
-        <div className="cell">31</div>
-        <div className="cell">31</div>
-        <div className="cell">31</div>
-        <div className="cell">31</div>
-        <div className="cell">31</div>
-        <div className="cell">31</div>
-        <div className="cell">31</div>
-        <div className="cell">31</div>
-        <div className="cell">31</div>
-        <div className="cell">31</div>
-        <div className="cell">31</div>
-        <div className="cell">31</div>
-        <div className="cell">31</div>
-        <div className="cell">31</div>
-        <div className="cell">31</div>
-        <div className="cell">31</div>
-        <div className="cell">31</div>
-        <div className="cell empty"></div>
-        <div className="cell empty"></div>
-        <div className="cell empty"></div>
-        <div className="cell empty"></div>
-        <div className="cell empty"></div>
+        <Cell />
+        <Cell />
+        <Cell />
+        <Cell />
+        <Cell />
+        <Cell />
+        <Cell />
+        <Cell />
+        <Cell />
+        <Cell />
+        <Cell />
+        <Cell />
+        <Cell />
+        <Cell />
+        <Cell />
+        <Cell />
+        <Cell />
+        <Cell />
+        <Cell />
+        <Cell />
+        <Cell />
+        <Cell />
+        <Cell />
+        <Cell />
+        <Cell />
+        <Cell />
+        <Cell />
+        <Cell />
+        <Cell />
+        <Cell />
+        <Cell />
+        <Cell />
+        <Cell />
+        <Cell />
+        <Cell />
       </div>
     </div>
   );
