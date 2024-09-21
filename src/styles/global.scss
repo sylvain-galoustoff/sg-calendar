@@ -1,0 +1,61 @@
+:root {
+  font-family: $font;
+  line-height: 1.5;
+  font-weight: 400;
+  font-size: 16px;
+
+  color: $text;
+  background-color: $bg;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root,
+#app {
+  height: 100%;
+  overflow: hidden;
+  @include dev;
+}
+
+body {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* USER BAR */
+#user-bar {
+  @include dev;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: $textLight;
+  font-weight: 700;
+
+  svg {
+    font-size: 1.25rem;
+  }
+
+  button {
+    color: $textLight;
+    font-weight: 700;
+  }
+}
+
+#user-bar-left {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}

@@ -1,0 +1,14 @@
+$primary: #7E93E7;
+$text: #5C6DB2;
+$textLight: #7E89B4;
+$bg: #E4E7F1;
+$card: #E4E7F1;
+$cardAlt: #CBCEDC;
+
+$corner: 8px;
+$font: "Be Vietnam Pro",
+  sans-serif;
+
+@mixin dev($color: red, $width: 1px) {
+  border: $width solid $color;
+}
