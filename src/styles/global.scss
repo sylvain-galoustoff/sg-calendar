@@ -183,9 +183,40 @@ body,
 #sidebar {
   @include dev;
   width: 33.33%;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 #selected-date {
   padding: 32px;
   justify-content: flex-start;
+}
+
+#add-event-button {
+  width: 100%;
+  padding: 16px 32px;
+  justify-content: flex-start;
+  color: $text;
+
+  svg {
+    font-size: 1.25rem;
+  }
+}
+
+/* ADD EVENT */
+#add-event-form {
+  background-color: $card;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 16px 32px;
+}
+
+#event-name {
+  font-weight: 700;
+}
+
+#agenda-group {
+  flex: 1;
 }

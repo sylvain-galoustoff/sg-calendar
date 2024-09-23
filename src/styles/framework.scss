@@ -9,6 +9,12 @@
 
 
 /* BUTTON */
+.button-group {
+  display: flex;
+  gap: 16px;
+  justify-content: flex-end;
+}
+
 button,
 a.button {
   display: flex;
@@ -19,6 +25,7 @@ a.button {
   padding: 8px;
   font-family: $font;
   border: none;
+  cursor: pointer;
 
   &.flat {
     padding: 0;
@@ -46,5 +53,67 @@ a.button {
   &.text {
     background-color: $text;
     color: $card;
+  }
+}
+
+/* FORM */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.inline-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.form-group {
+  position: relative;
+  opacity: .75;
+
+  [type="text"],
+  [type="time"],
+  select,
+  textarea {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid $textLight;
+    font-size: 1rem;
+    font-family: $font;
+    color: $textLight;
+
+    &:focus-visible {
+      outline: none;
+      border-color: $primary;
+    }
+
+    &::placeholder {
+      color: $textLight;
+    }
+  }
+
+  &:focus-within {
+    opacity: 1;
+  }
+
+  input[type="time"]::-webkit-calendar-picker-indicator {
+    display: none;
+  }
+
+  /* Masquer l'icône de l'horloge pour Firefox */
+  input[type="time"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+
+  input[type="time"]::-moz-calendar-picker-indicator {
+    display: none;
   }
 }

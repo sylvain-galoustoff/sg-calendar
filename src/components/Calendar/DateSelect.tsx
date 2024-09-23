@@ -1,16 +1,13 @@
 import { IoCaretBack, IoCaretForward } from "react-icons/io5";
+import ButtonIcon from "../common/ButtonIcon";
 
 function DateSelect() {
   return (
     <div className="big bold" id="date-select">
       <div className="cell" id="month-select">
-        <div className="button-icon text" id="previous-month">
-          <IoCaretBack />
-        </div>
+        <ButtonIcon icon={<IoCaretBack />} id="previous-month" />
         <p className="month-value">Septembre</p>
-        <div className="button-icon text" id="next-month">
-          <IoCaretForward />
-        </div>
+        <ButtonIcon icon={<IoCaretForward />} id="next-month" />
       </div>
       <div className="cell" id="year-select">
         2024
