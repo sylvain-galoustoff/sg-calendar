@@ -1,4 +1,5 @@
 import AddEvent from "../Events/AddEvent";
+import EventCard from "../Events/EventCard";
 import SelectedDate from "./SelectedDate";
 
 function Sidebar() {
@@ -6,7 +7,16 @@ function Sidebar() {
     <div id="sidebar">
       <SelectedDate />
       <AddEvent />
-      <div id="events-list"></div>
+      <div id="events-list">
+        <EventCard />
+        <EventCard />
+        <EventCard />
+        <EventCard />
+        <EventCard />
+        <EventCard />
+        <EventCard />
+        <EventCard />
+      </div>
     </div>
   );
 }

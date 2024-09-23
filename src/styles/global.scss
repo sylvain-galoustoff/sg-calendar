@@ -205,6 +205,12 @@ body,
 }
 
 /* ADD EVENT */
+#add-event {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
 #add-event-form {
   background-color: $card;
   display: flex;
@@ -219,4 +225,15 @@ body,
 
 #agenda-group {
   flex: 1;
+}
+
+/* EVENTS */
+#events-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.event-card {
+  background-color: $card;
 }
