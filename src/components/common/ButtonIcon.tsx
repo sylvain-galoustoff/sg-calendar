@@ -9,7 +9,7 @@ function ButtonIcon({ icon, id, classNames, onClick }: ButtonIconProps) {
   return (
     <button
       type="button"
-      className={`button-icon ${classNames}`}
+      className={`button-icon ${classNames ? classNames : ""}`}
       id={id}
       onClick={onClick}
     >

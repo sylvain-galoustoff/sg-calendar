@@ -36,8 +36,9 @@ body,
 
 #app-content {
   flex: 1;
+  overflow: hidden;
   display: flex;
-  gap: 32px
+  gap: 32px;
 }
 
 /* USER BAR */
@@ -83,7 +84,9 @@ body,
 #date-select {
   display: grid;
   gap: 2px;
-  grid-template-columns: repeat(7, 1fr)
+  grid-template-columns: repeat(7, 1fr);
+  height: $headerHeight;
+  overflow: hidden;
 }
 
 #month-select {
@@ -95,6 +98,15 @@ body,
   gap: 32px;
   padding: 32px;
   border-top-left-radius: 8px;
+
+  .button-icon {
+    color: $textLight;
+
+    &:hover {
+      color: $card;
+      background-color: $textLight;
+    }
+  }
 }
 
 #year-select {
@@ -181,8 +193,9 @@ body,
 
 /* SIDEBAR */
 #sidebar {
-  @include dev;
   width: 33.33%;
+  border-radius: $corner;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -190,6 +203,7 @@ body,
 
 #selected-date {
   padding: 32px;
+  height: $headerHeight;
   justify-content: flex-start;
 }
 
@@ -197,10 +211,16 @@ body,
   width: 100%;
   padding: 16px 32px;
   justify-content: flex-start;
-  color: $text;
+  color: $textLight;
+  font-weight: 700;
+  @include trans;
 
   svg {
     font-size: 1.25rem;
+  }
+
+  &:hover {
+    color: $primary;
   }
 }
 
@@ -216,11 +236,12 @@ body,
   display: flex;
   flex-direction: column;
   gap: 32px;
-  padding: 16px 32px;
+  padding: 32px 32px 16px;
 }
 
 #event-name {
   font-weight: 700;
+  font-size: 1.2rem;
 }
 
 #agenda-group {
@@ -232,8 +253,30 @@ body,
   display: flex;
   flex-direction: column;
   gap: 2px;
+  overflow-y: auto;
 }
 
 .event-card {
   background-color: $card;
+  padding: 16px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.event-card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.event-data {
+  display: flex;
+  justify-content: space-between;
+  color: $textLight;
+}
+
+.event-note {
+  color: $textLight;
+  line-height: 1.5;
 }

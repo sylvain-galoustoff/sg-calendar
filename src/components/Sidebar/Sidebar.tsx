@@ -1,4 +1,5 @@
-import AddEvent from "../Events/AddEvent";
+import AddEventForm from "../Events/AddEventForm";
+import AddEventToggle from "../Events/AddEventToggle";
 import EventCard from "../Events/EventCard";
 import SelectedDate from "./SelectedDate";
 
@@ -6,7 +7,8 @@ function Sidebar() {
   return (
     <div id="sidebar">
       <SelectedDate />
-      <AddEvent />
+      <AddEventToggle />
+      <AddEventForm />
       <div id="events-list">
         <EventCard />
         <EventCard />

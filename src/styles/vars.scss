@@ -1,6 +1,6 @@
 $primary: #7E93E7;
 $text: #5C6DB2;
-$textLight: #7E89B4;
+$textLight: #8F98BD;
 $bg: #E4E7F1;
 $card: #ffffff;
 $cardAlt: #e8e9f0;
@@ -9,10 +9,16 @@ $corner: 8px;
 $font: "Be Vietnam Pro",
   sans-serif;
 
+$headerHeight: 85px;
+
 @mixin dev($color: red, $width: 1px) {
   border: $width solid $color;
 }
 
 @mixin shadow($blur: 50px) {
   box-shadow: 0px 0px 50px rgba(0, 0, 0, .1);
+}
+
+@mixin trans($time: .15s) {
+  transition: all $time ease-out;
 }

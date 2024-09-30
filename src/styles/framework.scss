@@ -7,12 +7,23 @@
   font-weight: 700;
 }
 
+/* SCROLLBAR */
+::-webkit-scrollbar {
+  width: 4px;
+  background-color: $card;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $textLight;
+  border-radius: 4px;
+}
 
 /* BUTTON */
 .button-group {
   display: flex;
   gap: 16px;
   justify-content: flex-end;
+  align-items: center;
 }
 
 button,
@@ -31,6 +42,10 @@ a.button {
     padding: 0;
   }
 
+  &.ghost {
+    color: $text;
+  }
+
   &.primary {
     background-color: $primary;
     color: $card;
@@ -41,10 +56,12 @@ a.button {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 22px;
+  padding: 0;
+  width: 28px;
   aspect-ratio: 1;
-  border-radius: 13px;
+  border-radius: 16px;
   cursor: pointer;
+  @include trans;
 
   svg {
     font-size: .9rem;
