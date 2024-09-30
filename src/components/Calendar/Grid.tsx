@@ -12,36 +12,42 @@ type ParamsType = {
 
 function Grid() {
   const params = useParams<ParamsType>();
-  const [numberOfCells, setNumberOfCells] = useState(0);
-  const [offsetDays, setOffsetDays] = useState(0);
-  const [fillers, setFillers] = useState(0);
+  const [numberOfDays, setnumberOfDays] = useState(0);
+  const [numberOfOffsetDays, setNumberOfOffsetDays] = useState(0);
+  const [numberOfFillerDays, setNumberOfFillerDays] = useState(0);
 
   useEffect(() => {
-    if (params.year && params.month) {
-      const date = getDateFromParams(params);
-      if (date) {
-        const daysInMonth = getDaysInMonth(date);
-        const startDay = startOfMonth(date).getDay();
-        const endDay = endOfMonth(date).getDay();
+    const date = getDateFromParams(params);
+    if (date) {
+      const daysInMonth = getDaysInMonth(date);
+      const firstDayOfMonth = startOfMonth(date);
+      const lastDayOfMonth = endOfMonth(date);
+      console.clear();
+      console.log(lastDayOfMonth);
+      console.log(lastDayOfMonth.getDay());
 
-        setOffsetDays(startDay - 1);
-        setNumberOfCells(daysInMonth);
-        setFillers(6 - endDay);
-      }
+      setNumberOfOffsetDays(
+        firstDayOfMonth.getDay() === 0 ? 6 : firstDayOfMonth.getDay() - 1
+      );
+      setnumberOfDays(daysInMonth);
+      setNumberOfFillerDays(
+        lastDayOfMonth.getDay() === 0 ? 0 : 7 - lastDayOfMonth.getDay()
+      );
     }
   }, [params]);
 
   const renderOffset =
-    offsetDays !== 0 &&
-    Array.from({ length: offsetDays }, (_, index) => <EmptyCell key={index} />);
+    numberOfOffsetDays !== 0 &&
+    Array.from({ length: numberOfOffsetDays }, (_, index) => <EmptyCell key={index} />);
 
-  const renderCells = Array.from({ length: numberOfCells }, (_, index) => (
+  const renderCells = Array.from({ length: numberOfDays }, (_, index) => (
     <Cell key={index} day={index + 1} />
   ));
 
-  const renderFillers = Array.from({ length: fillers }, (_, index) => (
-    <EmptyCell key={index} />
-  ));
+  const rendernumberOfFillerDays = Array.from(
+    { length: numberOfFillerDays },
+    (_, index) => <EmptyCell key={index} />
+  );
 
   return (
     <div id="grid-container">
@@ -57,7 +63,7 @@ function Grid() {
       <div id="grid">
         {renderOffset}
         {renderCells}
-        {renderFillers}
+        {rendernumberOfFillerDays}
       </div>
     </div>
   );
