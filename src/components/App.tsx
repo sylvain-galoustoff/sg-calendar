@@ -13,6 +13,7 @@ function App() {
           <Route path="/:year/:month" element={<Calendar />} />
         </Routes>
         <Routes>
+          <Route path="/" element={<Sidebar />} />
           <Route path="/:year/:month" element={<Sidebar />} />
         </Routes>
       </div>
