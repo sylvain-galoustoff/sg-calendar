@@ -12,6 +12,12 @@ type ParamsType = {
 
 function Grid() {
   const params = useParams<ParamsType>();
+  const today = new Date();
+  const todayAtMidnight = new Date(
+    today.getFullYear(),
+    today.getMonth(),
+    today.getDate()
+  );
   const [numberOfDays, setnumberOfDays] = useState(0);
   const [numberOfOffsetDays, setNumberOfOffsetDays] = useState(0);
   const [numberOfFillerDays, setNumberOfFillerDays] = useState(0);
@@ -22,9 +28,6 @@ function Grid() {
       const daysInMonth = getDaysInMonth(date);
       const firstDayOfMonth = startOfMonth(date);
       const lastDayOfMonth = endOfMonth(date);
-      console.clear();
-      console.log(lastDayOfMonth);
-      console.log(lastDayOfMonth.getDay());
 
       setNumberOfOffsetDays(
         firstDayOfMonth.getDay() === 0 ? 6 : firstDayOfMonth.getDay() - 1
@@ -41,7 +44,7 @@ function Grid() {
     Array.from({ length: numberOfOffsetDays }, (_, index) => <EmptyCell key={index} />);
 
   const renderCells = Array.from({ length: numberOfDays }, (_, index) => (
-    <Cell key={index} day={index + 1} />
+    <Cell key={index} day={index + 1} today={todayAtMidnight} />
   ));
 
   const rendernumberOfFillerDays = Array.from(
