@@ -150,12 +150,15 @@ body,
 
   .cell {
     color: $textLight;
+    cursor: pointer;
 
     &:hover {
       background-color: $cardAlt;
     }
 
     &.empty {
+      cursor: initial;
+
       &:hover {
         background-color: $card;
       }
