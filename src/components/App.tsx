@@ -1,3 +1,4 @@
+import { Routes, Route } from "react-router-dom";
 import Calendar from "./Calendar/Calendar";
 import Sidebar from "./Sidebar/Sidebar";
 import UserBar from "./UserBar";
@@ -7,8 +8,13 @@ function App() {
     <div id="app">
       <UserBar />
       <div id="app-content">
-        <Calendar />
-        <Sidebar />
+        <Routes>
+          <Route path="/" element={<Calendar />} />
+          <Route path="/:year/:month" element={<Calendar />} />
+        </Routes>
+        <Routes>
+          <Route path="/:year/:month" element={<Sidebar />} />
+        </Routes>
       </div>
     </div>
   );
