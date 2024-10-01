@@ -9,13 +9,12 @@ function App() {
       <UserBar />
       <div id="app-content">
         <Routes>
-          <Route path="/" element={<Calendar />} />
+          <Route path="*" element={<Calendar />} />
           <Route path="/:year/:month" element={<Calendar />} />
         </Routes>
-        <Routes>
-          <Route path="/" element={<Sidebar />} />
-          <Route path="/:year/:month" element={<Sidebar />} />
-        </Routes>
+        <div id="sidebar">
+          <Sidebar />
+        </div>
       </div>
     </div>
   );

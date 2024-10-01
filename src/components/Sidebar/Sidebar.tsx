@@ -1,32 +1,26 @@
-import { useState } from "react";
-import AddEventForm from "../Events/AddEventForm";
-import AddEventToggle from "../Events/AddEventToggle";
-import EventCard from "../Events/EventCard";
+import { useEffect, useState } from "react";
 import SelectedDate from "./SelectedDate";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../firebase";
+import Events from "../Events/Events";
+import Forms from "../auth/Forms";
 
 function Sidebar() {
-  const [showForm, setShowForm] = useState(false);
+  const [isConnectedUser, setIsConnectedUser] = useState(false);
 
-  const toggleForm = () => {
-    setShowForm(!showForm);
-  };
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        setIsConnectedUser(false);
+      }
+    });
+  });
 
   return (
-    <div id="sidebar">
+    <>
       <SelectedDate />
-      <AddEventToggle toggleForm={toggleForm} />
-      <AddEventForm isOpen={showForm} />
-      <div id="events-list">
-        <EventCard />
-        <EventCard />
-        <EventCard />
-        <EventCard />
-        <EventCard />
-        <EventCard />
-        <EventCard />
-        <EventCard />
-      </div>
-    </div>
+      {isConnectedUser ? <Events /> : <Forms />}
+    </>
   );
 }
 

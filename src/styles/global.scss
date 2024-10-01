@@ -323,3 +323,27 @@ body,
   color: $textLight;
   line-height: 1.5;
 }
+
+/* AUTH */
+.auth-form {
+  background-color: $card;
+  padding: 32px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  flex: 1;
+
+  .form-header {
+    .small {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+
+    .button {
+      padding: 0;
+      color: $textLight;
+      text-decoration: underline;
+    }
+  }
+}

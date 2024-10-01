@@ -3,6 +3,10 @@
   font-size: 1.2rem;
 }
 
+.small {
+  color: $textLight;
+}
+
 .bold {
   font-weight: 700;
 }
@@ -85,6 +89,12 @@ a.button {
   border: 0;
 }
 
+.form-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 .inline-group {
   display: flex;
   align-items: center;
@@ -97,6 +107,7 @@ a.button {
 
   [type="text"],
   [type="time"],
+  [type="password"],
   select,
   textarea {
     width: 100%;
