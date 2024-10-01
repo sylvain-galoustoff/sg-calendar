@@ -248,10 +248,35 @@ body,
 
 #add-event-form {
   background-color: $card;
+  padding: 0 16px;
   display: flex;
   flex-direction: column;
   gap: 32px;
-  padding: 32px 32px 16px;
+  max-height: 0;
+  overflow: hidden;
+  @include trans;
+
+  .form-group,
+  .button-group {
+    opacity: 0;
+    transition: opacity .5s ease-out;
+  }
+
+  &.open {
+    overflow: initial;
+    max-height: 2000px;
+    padding-top: 32px;
+    padding-bottom: 32px;
+
+    .form-group,
+    .button-group {
+      opacity: 1;
+    }
+
+    &+#events-list {
+      top: 0;
+    }
+  }
 }
 
 #event-name {
@@ -269,6 +294,9 @@ body,
   flex-direction: column;
   gap: 2px;
   overflow-y: auto;
+  position: relative;
+  top: -2px;
+  @include trans;
 }
 
 .event-card {

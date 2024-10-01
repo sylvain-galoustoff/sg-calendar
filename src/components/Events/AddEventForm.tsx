@@ -1,9 +1,13 @@
 import { IoClose, IoCheckmark } from "react-icons/io5";
 import ButtonIcon from "../common/ButtonIcon";
 
-function AddEvent() {
+type AddEventProps = {
+  isOpen: boolean;
+};
+
+function AddEvent({ isOpen }: AddEventProps) {
   return (
-    <form id="add-event-form">
+    <form id="add-event-form" className={isOpen ? "open" : "not-open"}>
       <div className="form-group">
         <label className="sr-only" htmlFor="event-name">
           Nom de l'événement
