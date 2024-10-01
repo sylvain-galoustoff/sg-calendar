@@ -1,14 +1,15 @@
 type ButtonIconProps = {
   icon: JSX.Element;
+  type?: "submit" | "button";
   id?: string;
   classNames?: string;
   onClick?: () => void;
 };
 
-function ButtonIcon({ icon, id, classNames, onClick }: ButtonIconProps) {
+function ButtonIcon({ icon, type = "button", id, classNames, onClick }: ButtonIconProps) {
   return (
     <button
-      type="button"
+      type={type}
       className={`button-icon ${classNames ? classNames : ""}`}
       id={id}
       onClick={onClick}

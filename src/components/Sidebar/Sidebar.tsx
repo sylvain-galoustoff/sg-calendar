@@ -12,6 +12,8 @@ function Sidebar() {
     onAuthStateChanged(auth, (user) => {
       if (!user) {
         setIsConnectedUser(false);
+      } else {
+        setIsConnectedUser(true);
       }
     });
   });

@@ -12,7 +12,6 @@ function Cell({ day, today }: CellProps) {
 
   useEffect(() => {
     let cellDate = new Date(Number(params.year), Number(params.month) - 1, day);
-    console.log(cellDate);
 
     if (today.getTime() === cellDate.getTime()) {
       setIsToday(true);
