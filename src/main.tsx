@@ -4,6 +4,12 @@ import App from "./components/App.tsx";
 import "./styles/index.scss";
 import WebFont from "webfontloader";
 import { BrowserRouter } from "react-router-dom";
+import { fr } from "date-fns/locale";
+import { setDefaultOptions } from "date-fns";
+
+setDefaultOptions({
+  locale: fr,
+});
 
 WebFont.load({
   google: {

@@ -1,7 +1,19 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { getDateFromParams } from "../../utils/dates";
+import { format } from "date-fns";
+
 function SelectedDate() {
+  const params = useParams();
+  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+
+  useEffect(() => {
+    setSelectedDate(getDateFromParams(params));
+  }, [params]);
+
   return (
     <div className="cell big bold" id="selected-date">
-      Samedi 21 septembre 2024
+      <span>{selectedDate && format(selectedDate, "EEEE d MMMM yyyy")}</span>
     </div>
   );
 }

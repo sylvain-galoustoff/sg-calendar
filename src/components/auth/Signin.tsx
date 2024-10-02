@@ -1,3 +1,4 @@
+import { useState, ChangeEvent } from "react";
 import ButtonIcon from "../common/ButtonIcon";
 import { IoCheckmark } from "react-icons/io5";
 
@@ -6,8 +7,31 @@ type SigninProps = {
 };
 
 function Signin({ toggleForm }: SigninProps) {
+  const emptyForm = {
+    usermail: "",
+    userpass: "",
+  };
+  const [form, setForm] = useState(emptyForm);
+  const [passIsValid, setPassIsValid] = useState(true);
+
   const changeForm = () => {
     toggleForm("login");
+  };
+
+  const inputChange = (e: ChangeEvent<HTMLInputElement>, target: string) => {
+    setForm((prevState) => ({
+      ...prevState,
+      [target]: e.target.value,
+    }));
+  };
+
+  const validator = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    if (value.length > 0 && value !== form.userpass) {
+      setPassIsValid(false);
+    } else {
+      setPassIsValid(true);
+    }
   };
 
   return (
@@ -25,19 +49,37 @@ function Signin({ toggleForm }: SigninProps) {
         <label className="sr-only" htmlFor="usermail">
           Nom de l'événement
         </label>
-        <input type="text" id="usermail" placeholder="Votre email" />
+        <input
+          type="text"
+          id="usermail"
+          placeholder="Votre email"
+          onChange={(e) => inputChange(e, "usermail")}
+        />
       </div>
       <div className="form-group">
         <label className="sr-only" htmlFor="userpass">
           Nom de l'événement
         </label>
-        <input type="password" id="userpass" placeholder="Votre mot de passe" />
+        <input
+          type="password"
+          id="userpass"
+          placeholder="Votre mot de passe"
+          onChange={(e) => inputChange(e, "userpass")}
+        />
       </div>
       <div className="form-group">
         <label className="sr-only" htmlFor="confirmpass">
           Nom de l'événement
         </label>
-        <input type="password" id="confirmpass" placeholder="Confirmez le mot de passe" />
+        <input
+          type="password"
+          id="confirmpass"
+          placeholder="Confirmez le mot de passe"
+          onChange={validator}
+        />
+        {!passIsValid && (
+          <p className="validator small danger">Les mots de passe sont différents</p>
+        )}
       </div>
       <div className="button-group">
         <ButtonIcon classNames="primary" icon={<IoCheckmark />} />

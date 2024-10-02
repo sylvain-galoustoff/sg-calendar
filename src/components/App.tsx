@@ -13,7 +13,9 @@ function App() {
           <Route path="/:year/:month" element={<Calendar />} />
         </Routes>
         <div id="sidebar">
-          <Sidebar />
+          <Routes>
+            <Route path="/:year/:month" element={<Sidebar />} />
+          </Routes>
         </div>
       </div>
     </div>

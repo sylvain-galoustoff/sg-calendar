@@ -145,4 +145,15 @@ a.button {
   input[type="time"]::-moz-calendar-picker-indicator {
     display: none;
   }
+
+  .validator {
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    font-size: .9rem;
+
+    &.danger {
+      color: $danger;
+    }
+  }
 }
