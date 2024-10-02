@@ -1,6 +1,7 @@
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
 import ButtonIcon from "../common/ButtonIcon";
 import { IoCheckmark } from "react-icons/io5";
+import { registerUser } from "../../api/auth";
 
 type SigninProps = {
   toggleForm: (form: "login") => void;
@@ -34,8 +35,14 @@ function Signin({ toggleForm }: SigninProps) {
     }
   };
 
+  const submitSignin = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const response = await registerUser(form);
+    console.log(response);
+  };
+
   return (
-    <form className="auth-form" id="login-form">
+    <form className="auth-form" id="login-form" onSubmit={submitSignin}>
       <div className="form-header">
         <h1 className="big bold">Inscription</h1>
         <p className="small">
@@ -82,7 +89,7 @@ function Signin({ toggleForm }: SigninProps) {
         )}
       </div>
       <div className="button-group">
-        <ButtonIcon classNames="primary" icon={<IoCheckmark />} />
+        <ButtonIcon classNames="primary" type="submit" icon={<IoCheckmark />} />
       </div>
     </form>
   );
