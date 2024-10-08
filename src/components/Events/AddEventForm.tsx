@@ -9,9 +9,10 @@ import { useParams } from "react-router-dom";
 
 type AddEventProps = {
   isOpen: boolean;
+  setIsOpen: (status: boolean) => void;
 };
 
-function AddEvent({ isOpen }: AddEventProps) {
+function AddEvent({ isOpen, setIsOpen }: AddEventProps) {
   const params = useParams();
   const selectedDate = getDateFromParams(params);
   const emptyForm = {
@@ -30,7 +31,7 @@ function AddEvent({ isOpen }: AddEventProps) {
     e.preventDefault();
     const response = await storeEvent(form);
     if (response.success) {
-      console.log(response);
+      setIsOpen(false);
     } else {
       console.log(response);
     }

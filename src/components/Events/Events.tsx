@@ -13,7 +13,7 @@ function Events() {
   return (
     <>
       <AddEventToggle toggleForm={toggleForm} />
-      <AddEventForm isOpen={showForm} />
+      <AddEventForm isOpen={showForm} setIsOpen={toggleForm} />
       <div id="events-list">
         <EventCard />
         <EventCard />
