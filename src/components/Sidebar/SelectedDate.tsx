@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getDateFromParams } from "../../utils/dates";
+import { getMonthFromParams } from "../../utils/dates";
 import { format } from "date-fns";
 
 function SelectedDate() {
@@ -8,7 +8,7 @@ function SelectedDate() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
 
   useEffect(() => {
-    setSelectedDate(getDateFromParams(params));
+    setSelectedDate(getMonthFromParams(params));
   }, [params]);
 
   return (

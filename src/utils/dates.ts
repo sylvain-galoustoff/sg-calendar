@@ -5,7 +5,7 @@ export const getDateSlug = (dateObj: Date): string => {
   return slug;
 };
 
-export const getDateFromParams = (params: RouteParams): Date => {
+export const getMonthFromParams = (params: RouteParams): Date => {
   const dateObj = new Date(Number(params.year), Number(params.month) - 1);
   return dateObj;
 };

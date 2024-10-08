@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { IoCaretBack, IoCaretForward } from "react-icons/io5";
 import ButtonIcon from "../common/ButtonIcon";
-import { getDateFromParams, months } from "../../utils/dates";
+import { getMonthFromParams, months } from "../../utils/dates";
 
 function DateSelect() {
   const params = useParams();
@@ -11,7 +11,7 @@ function DateSelect() {
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
 
   useEffect(() => {
-    const date = getDateFromParams(params);
+    const date = getMonthFromParams(params);
     if (date) {
       setCurrentYear(date.getFullYear());
       setCurrentMonth(date.getMonth());

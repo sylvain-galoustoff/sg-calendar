@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getDateFromParams } from "../../utils/dates";
+import { getMonthFromParams } from "../../utils/dates";
 import { getDaysInMonth, startOfMonth, endOfMonth } from "date-fns";
 import Cell from "./Cell";
 import EmptyCell from "./EmptyCell";
@@ -23,7 +23,7 @@ function Grid() {
   const [numberOfFillerDays, setNumberOfFillerDays] = useState(0);
 
   useEffect(() => {
-    const date = getDateFromParams(params);
+    const date = getMonthFromParams(params);
     if (date) {
       const daysInMonth = getDaysInMonth(date);
       const firstDayOfMonth = startOfMonth(date);

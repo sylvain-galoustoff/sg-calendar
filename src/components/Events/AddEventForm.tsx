@@ -4,7 +4,7 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { EventType } from "../../@types/types";
 import { getTime } from "date-fns";
 import storeEvent from "../../api/events";
-import { getDateFromParams } from "../../utils/dates";
+import { getMonthFromParams } from "../../utils/dates";
 import { useParams } from "react-router-dom";
 
 type AddEventProps = {
@@ -14,7 +14,7 @@ type AddEventProps = {
 
 function AddEvent({ isOpen, setIsOpen }: AddEventProps) {
   const params = useParams();
-  const selectedDate = getDateFromParams(params);
+  const selectedDate = getMonthFromParams(params);
   const emptyForm = {
     uid: "",
     date: getTime(selectedDate),
