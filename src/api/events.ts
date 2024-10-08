@@ -3,7 +3,6 @@ import { EventType, apiResponseType } from "../@types/types";
 import { auth, db } from "../firebase";
 
 export default async function storeEvent(form: EventType): Promise<apiResponseType> {
-  console.log("from api ==>", form);
   const newEvent = { ...form };
   newEvent.uid = auth.currentUser ? auth.currentUser.uid : "undefined";
   newEvent.id = Date.now().toString();

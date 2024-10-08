@@ -32,8 +32,10 @@ function AddEvent({ isOpen, setIsOpen }: AddEventProps) {
     const response = await storeEvent(form);
     if (response.success) {
       setIsOpen(false);
+      setForm(emptyForm);
     } else {
-      console.log(response);
+      console.error(response);
+      alert(response.message);
     }
   };
 
