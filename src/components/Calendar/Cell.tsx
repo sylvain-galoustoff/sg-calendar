@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useDateContext } from "../../context/DateContext";
 
 type CellProps = {
   day: number;
@@ -8,7 +9,9 @@ type CellProps = {
 
 function Cell({ day, today }: CellProps) {
   const params = useParams();
+  const { date, setDate } = useDateContext();
   const [isToday, setIsToday] = useState(false);
+  const [isSelected, setIsSelected] = useState(false);
 
   useEffect(() => {
     let cellDate = new Date(Number(params.year), Number(params.month) - 1, day);
@@ -18,10 +21,26 @@ function Cell({ day, today }: CellProps) {
     } else {
       setIsToday(false);
     }
-  }, [params, day]);
+
+    if (date.getTime() === cellDate.getTime()) {
+      setIsSelected(true);
+    } else {
+      setIsSelected(false);
+    }
+  }, [params, day, date]);
+
+  const setSelectedDate = () => {
+    let cellDate = new Date(Number(params.year), Number(params.month) - 1, day);
+    setDate(cellDate);
+  };
 
   return (
-    <div className={`cell ${isToday ? "today" : "not-today"}`}>
+    <div
+      className={`cell ${isToday ? "today" : "not-today"} ${
+        isSelected ? "selected" : "not-selected"
+      }`}
+      onClick={setSelectedDate}
+    >
       <div className="cell-content">
         <div className="span cell-value">{day}</div>
       </div>

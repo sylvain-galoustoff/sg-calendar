@@ -157,7 +157,8 @@ body,
     color: $textLight;
     cursor: pointer;
 
-    &:hover {
+    &:hover,
+    &.selected {
       background-color: $primary;
     }
 
@@ -182,7 +183,8 @@ body,
         font-weight: 700;
       }
 
-      &:hover {
+      &:hover,
+      &.selected {
         .cell-value {
           background-color: $card;
           color: $primary;
