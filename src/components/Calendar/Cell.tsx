@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, KeyboardEvent } from "react";
 import { useParams } from "react-router-dom";
 import { useDateContext } from "../../context/DateContext";
 
@@ -34,12 +34,20 @@ function Cell({ day, today }: CellProps) {
     setDate(cellDate);
   };
 
+  const selectDateByKey = (e: KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "Enter" || e.key === " ") {
+      setSelectedDate();
+    }
+  };
+
   return (
     <div
       className={`cell ${isToday ? "today" : "not-today"} ${
         isSelected ? "selected" : "not-selected"
       }`}
+      tabIndex={0}
       onClick={setSelectedDate}
+      onKeyDown={selectDateByKey}
     >
       <div className="cell-content">
         <div className="span cell-value">{day}</div>

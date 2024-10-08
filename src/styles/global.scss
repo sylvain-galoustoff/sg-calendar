@@ -158,6 +158,13 @@ body,
     cursor: pointer;
 
     &:hover,
+    &:focus-visible {
+      background-color: lighten($primary, 10%);
+      outline-color: saturate($primary, 10%);
+      outline-width: 2px;
+      outline-style: solid;
+    }
+
     &.selected {
       background-color: $primary;
     }
