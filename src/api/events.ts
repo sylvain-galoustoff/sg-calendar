@@ -1,6 +1,15 @@
-import { doc, setDoc } from "firebase/firestore";
+import { collection, doc, onSnapshot, query, setDoc, where } from "firebase/firestore";
 import { EventType, apiResponseType } from "../@types/types";
 import { auth, db } from "../firebase";
+
+export const observeEvents = (uid: string, callback: (events: EventType[]) => void) => {
+  const q = query(collection(db, "events"), where("uid", "==", uid));
+  const unsubscribe = onSnapshot(q, (snapshot) => {
+    const data = snapshot.docs.map((doc) => doc.data() as EventType);
+    callback(data);
+  });
+  return unsubscribe;
+};
 
 export default async function storeEvent(form: EventType): Promise<apiResponseType> {
   const newEvent = { ...form };

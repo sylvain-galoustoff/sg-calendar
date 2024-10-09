@@ -1,17 +1,20 @@
-function EventCard() {
+import { EventType } from "../../@types/types";
+
+type EventCardType = {
+  data: EventType;
+};
+
+function EventCard({ data }: EventCardType) {
   return (
     <div className="event-card">
       <div className="event-card-header">
-        <h2 className="event-name big bold">Nom de l'événement</h2>
+        <h2 className="event-name big bold">{data.eventName}</h2>
         <div className="event-data bold">
-          <p className="event-agenda">Sacha</p>
-          <p className="event-time">13h45</p>
+          <p className="event-agenda">{data.agenda}</p>
+          <p className="event-time">{data.time}</p>
         </div>
       </div>
-      <div className="event-note">
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta ducimus cumque,
-        ab non earum, ut odit optio ipsa necessitatibus.
-      </div>
+      <div className="event-note">{data.note}</div>
     </div>
   );
 }

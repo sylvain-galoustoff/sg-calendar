@@ -1,4 +1,5 @@
 import { createContext, useState, useContext, ReactNode } from "react";
+import { setDateToZeroHour } from "../utils/dates";
 
 type DateContextType = {
   date: Date;
@@ -6,7 +7,7 @@ type DateContextType = {
 };
 
 export const DateContext = createContext<DateContextType>({
-  date: new Date(),
+  date: setDateToZeroHour(new Date()),
   setDate: () => {},
 });
 
@@ -15,7 +16,7 @@ type DateContextProviderProps = {
 };
 
 export const DateContextProvider = ({ children }: DateContextProviderProps) => {
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(setDateToZeroHour(new Date()));
 
   return (
     <DateContext.Provider value={{ date, setDate }}>{children}</DateContext.Provider>
