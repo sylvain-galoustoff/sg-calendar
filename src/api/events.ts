@@ -1,4 +1,12 @@
-import { collection, doc, onSnapshot, query, setDoc, where } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  onSnapshot,
+  query,
+  setDoc,
+  where,
+} from "firebase/firestore";
 import { EventType, apiResponseType } from "../@types/types";
 import { auth, db } from "../firebase";
 
@@ -36,3 +44,19 @@ export default async function storeEvent(form: EventType): Promise<apiResponseTy
     };
   }
 }
+
+export const deleteEvent = async (eventId: string) => {
+  try {
+    await deleteDoc(doc(db, "events", eventId));
+    return {
+      success: true,
+      message: `Evénement ${eventId} supprimé`,
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      success: false,
+      message: `La suppression a échoué`,
+    };
+  }
+};

@@ -1,4 +1,5 @@
 import { EventType } from "../../@types/types";
+import { deleteEvent } from "../../api/events";
 import ButtonIcon from "../common/ButtonIcon";
 import { IoTrash, IoPencil } from "react-icons/io5";
 
@@ -7,11 +8,20 @@ type EventCardType = {
 };
 
 function EventCard({ data }: EventCardType) {
+  const editEvent = () => {
+    console.log("edit " + data.id);
+  };
+
+  const dropEvent = () => {
+    console.log("drop " + data.id);
+    deleteEvent(data.id);
+  };
+
   return (
     <div className="event-card">
       <div className="event-actions">
-        <ButtonIcon icon={<IoPencil />} classNames="text-light" />
-        <ButtonIcon icon={<IoTrash />} classNames="text-light" />
+        <ButtonIcon icon={<IoPencil />} classNames="text-light" onClick={editEvent} />
+        <ButtonIcon icon={<IoTrash />} classNames="text-light" onClick={dropEvent} />
       </div>
       <div className="event-content">
         <div className="event-card-header">
