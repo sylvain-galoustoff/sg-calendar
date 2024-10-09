@@ -156,13 +156,23 @@ body,
   .cell {
     color: $textLight;
     cursor: pointer;
+    position: relative;
+    z-index: 0;
 
     &:hover,
     &:focus-visible {
       background-color: lighten($primary, 10%);
-      outline-color: saturate($primary, 10%);
+      outline-color: saturate($primary, 50%);
       outline-width: 2px;
       outline-style: solid;
+      outline-offset: -2px;
+      z-index: 1;
+
+      .cell-value {
+        outline-color: saturate($primary, 50%);
+        outline-width: 2px;
+        outline-style: solid;
+      }
     }
 
     &.selected {
@@ -174,6 +184,7 @@ body,
 
       &:hover {
         background-color: $card;
+        outline: none;
       }
     }
 
@@ -219,7 +230,7 @@ body,
 #sidebar {
   width: 33.33%;
   border-radius: $corner;
-  overflow: hidden;
+  overflow-y: hidden;
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -303,18 +314,30 @@ body,
 
 /* EVENTS */
 #events-list {
+  background-color: $card;
   display: flex;
+  flex: 1;
   flex-direction: column;
-  gap: 2px;
   overflow-y: auto;
   position: relative;
   top: -2px;
   @include trans;
+
+  .event-card {
+    border-bottom: 2px solid $bg;
+  }
 }
 
 .event-card {
   background-color: $card;
   padding: 16px 32px;
+  display: flex;
+  gap: 32px;
+  position: relative;
+}
+
+.event-content {
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -335,6 +358,17 @@ body,
 .event-note {
   color: $textLight;
   line-height: 1.5;
+}
+
+.event-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  button {
+    width: 24px;
+    aspect-ratio: 1;
+  }
 }
 
 /* AUTH */

@@ -1,31 +1,38 @@
 import { IoClose, IoCheckmark } from "react-icons/io5";
 import ButtonIcon from "../common/ButtonIcon";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { EventType } from "../../@types/types";
-import { getTime } from "date-fns";
 import storeEvent from "../../api/events";
-import { getMonthFromParams } from "../../utils/dates";
-import { useParams } from "react-router-dom";
+import { setTimestampZeroHour } from "../../utils/dates";
+import { useDateContext } from "../../context/DateContext";
 
 type AddEventProps = {
   isOpen: boolean;
   setIsOpen: (status: boolean) => void;
+  editForm?: EventType;
 };
 
-function AddEvent({ isOpen, setIsOpen }: AddEventProps) {
-  const params = useParams();
-  const selectedDate = getMonthFromParams(params);
+function AddEvent({ isOpen, setIsOpen, editForm }: AddEventProps) {
+  const { date } = useDateContext();
+
   const emptyForm = {
     uid: "",
-    date: getTime(selectedDate),
+    date: setTimestampZeroHour(date),
     eventName: "",
     id: "",
     note: "",
     time: "",
-    agenda: null,
+    agenda: "default",
   };
 
-  const [form, setForm] = useState<EventType>(emptyForm);
+  const [form, setForm] = useState<EventType>(editForm ? editForm : emptyForm);
+
+  useEffect(() => {
+    setForm((prevState) => ({
+      ...prevState,
+      date: setTimestampZeroHour(date),
+    }));
+  }, [date]);
 
   const submitEvent = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -64,6 +71,7 @@ function AddEvent({ isOpen, setIsOpen }: AddEventProps) {
           id="event-name"
           placeholder="Nom de l'événement"
           onChange={(e) => updateForm(e, "eventName")}
+          value={form.eventName}
         />
       </div>
       <div className="inline-group">
@@ -71,7 +79,12 @@ function AddEvent({ isOpen, setIsOpen }: AddEventProps) {
           <label className="sr-only" htmlFor="event-agenda">
             Choix de l'agenda
           </label>
-          <select id="event-agenda" onChange={(e) => updateForm(e, "agenda")}>
+          <select
+            id="event-agenda"
+            onChange={(e) => updateForm(e, "agenda")}
+            value={form.agenda ? form.agenda : "default"}
+          >
+            <option value="default">Choisissez l'agenda concerné</option>
             <option value="sacha">Sacha</option>
             <option value="charly">Charly</option>
             <option value="julie">Julie</option>
@@ -80,9 +93,14 @@ function AddEvent({ isOpen, setIsOpen }: AddEventProps) {
         </div>
         <div className="form-group">
           <label className="sr-only" htmlFor="event-time">
-            Choix de l'agenda
+            Horaire
           </label>
-          <input type="time" id="event-time" onChange={(e) => updateForm(e, "time")} />
+          <input
+            type="time"
+            id="event-time"
+            onChange={(e) => updateForm(e, "time")}
+            value={form.time}
+          />
         </div>
       </div>
       <div className="form-group">
@@ -93,6 +111,7 @@ function AddEvent({ isOpen, setIsOpen }: AddEventProps) {
           id="event-note"
           placeholder="Description (facultatif)"
           onChange={(e) => updateForm(e, "note")}
+          value={form.note}
         />
       </div>
       <div className="button-group">

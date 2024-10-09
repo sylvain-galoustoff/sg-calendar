@@ -74,6 +74,10 @@ a.button {
   &.text {
     background-color: $text;
     color: $card;
+
+    &:hover {
+      background-color: $primary;
+    }
   }
 }
 
