@@ -10,8 +10,8 @@ function EventCard({ data }: EventCardType) {
   return (
     <div className="event-card">
       <div className="event-actions">
-        <ButtonIcon icon={<IoPencil />} classNames="text" />
-        <ButtonIcon icon={<IoTrash />} classNames="text" />
+        <ButtonIcon icon={<IoPencil />} classNames="text-light" />
+        <ButtonIcon icon={<IoTrash />} classNames="text-light" />
       </div>
       <div className="event-content">
         <div className="event-card-header">

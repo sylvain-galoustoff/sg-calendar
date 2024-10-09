@@ -161,18 +161,9 @@ body,
 
     &:hover,
     &:focus-visible {
-      background-color: lighten($primary, 10%);
-      outline-color: saturate($primary, 50%);
-      outline-width: 2px;
-      outline-style: solid;
-      outline-offset: -2px;
+      outline: 2px solid $primary;
+      outline-offset: -4px;
       z-index: 1;
-
-      .cell-value {
-        outline-color: saturate($primary, 50%);
-        outline-width: 2px;
-        outline-style: solid;
-      }
     }
 
     &.selected {

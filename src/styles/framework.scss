@@ -79,6 +79,15 @@ a.button {
       background-color: $primary;
     }
   }
+
+  &.text-light {
+    background-color: $textLight;
+    color: $card;
+
+    &:hover {
+      background-color: $primary;
+    }
+  }
 }
 
 /* FORM */
