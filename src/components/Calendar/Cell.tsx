@@ -32,7 +32,6 @@ function Cell({ day, today }: CellProps) {
   const setSelectedDate = () => {
     let cellDate = new Date(Number(params.year), Number(params.month) - 1, day);
     setDate(cellDate);
-    console.log(date);
   };
 
   const selectDateByKey = (e: KeyboardEvent<HTMLDivElement>) => {

@@ -6,6 +6,7 @@ import { EventType } from "../../@types/types";
 import { observeEvents } from "../../api/events";
 import { auth } from "../../firebase";
 import { useDateContext } from "../../context/DateContext";
+import { EditEventContextProvider } from "../../context/EditEventContext";
 
 function Events() {
   const { date } = useDateContext();
@@ -43,11 +44,11 @@ function Events() {
   ));
 
   return (
-    <>
+    <EditEventContextProvider>
       <AddEventToggle toggleForm={toggleForm} />
       <AddEventForm isOpen={showForm} setIsOpen={toggleForm} />
       <div id="events-list">{renderCards}</div>
-    </>
+    </EditEventContextProvider>
   );
 }
 

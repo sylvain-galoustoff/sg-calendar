@@ -5,6 +5,7 @@ import {
   onSnapshot,
   query,
   setDoc,
+  updateDoc,
   where,
 } from "firebase/firestore";
 import { EventType, apiResponseType } from "../@types/types";
@@ -19,7 +20,7 @@ export const observeEvents = (uid: string, callback: (events: EventType[]) => vo
   return unsubscribe;
 };
 
-export default async function storeEvent(form: EventType): Promise<apiResponseType> {
+export async function storeEvent(form: EventType): Promise<apiResponseType> {
   const newEvent = { ...form };
   newEvent.uid = auth.currentUser ? auth.currentUser.uid : "undefined";
   newEvent.id = Date.now().toString();
@@ -41,6 +42,22 @@ export default async function storeEvent(form: EventType): Promise<apiResponseTy
     return {
       success: false,
       message: `Le champs "Nom de l'événement" doit être rempli`,
+    };
+  }
+}
+
+export async function updateEvent(form: EventType): Promise<apiResponseType> {
+  try {
+    await updateDoc(doc(db, "events", form.id), form);
+    return {
+      success: true,
+      message: `Evénement ${form.eventName} modifié`,
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      success: false,
+      message: `L'événement n'a pas pu être modifié`,
     };
   }
 }

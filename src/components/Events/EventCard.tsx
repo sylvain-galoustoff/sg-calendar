@@ -1,5 +1,6 @@
 import { EventType } from "../../@types/types";
 import { deleteEvent } from "../../api/events";
+import { useEditEventContext } from "../../context/EditEventContext";
 import ButtonIcon from "../common/ButtonIcon";
 import { IoTrash, IoPencil } from "react-icons/io5";
 
@@ -8,12 +9,13 @@ type EventCardType = {
 };
 
 function EventCard({ data }: EventCardType) {
+  const { setEditForm } = useEditEventContext();
+
   const editEvent = () => {
-    console.log("edit " + data.id);
+    setEditForm(data);
   };
 
   const dropEvent = () => {
-    console.log("drop " + data.id);
     deleteEvent(data.id);
   };
 

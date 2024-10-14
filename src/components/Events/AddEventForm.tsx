@@ -2,22 +2,25 @@ import { IoClose, IoCheckmark } from "react-icons/io5";
 import ButtonIcon from "../common/ButtonIcon";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { EventType } from "../../@types/types";
-import storeEvent from "../../api/events";
+import { storeEvent, updateEvent } from "../../api/events";
 import { setTimestampZeroHour } from "../../utils/dates";
 import { useDateContext } from "../../context/DateContext";
+import { useEditEventContext } from "../../context/EditEventContext";
 
 type AddEventProps = {
   isOpen: boolean;
   setIsOpen: (status: boolean) => void;
-  editForm?: EventType;
 };
 
-function AddEvent({ isOpen, setIsOpen, editForm }: AddEventProps) {
+function AddEventForm({ isOpen, setIsOpen }: AddEventProps) {
   const { date } = useDateContext();
+  const { editForm, setEditForm } = useEditEventContext();
 
-  const emptyForm = {
+  const [form, setForm] = useState<EventType>(editForm);
+
+  const emptyForm: EventType = {
     uid: "",
-    date: setTimestampZeroHour(date),
+    date: setTimestampZeroHour(new Date()),
     eventName: "",
     id: "",
     note: "",
@@ -25,24 +28,33 @@ function AddEvent({ isOpen, setIsOpen, editForm }: AddEventProps) {
     agenda: "default",
   };
 
-  const [form, setForm] = useState<EventType>(editForm ? editForm : emptyForm);
-
   useEffect(() => {
-    setForm((prevState) => ({
-      ...prevState,
+    setForm({
+      ...editForm,
       date: setTimestampZeroHour(date),
-    }));
-  }, [date]);
+    });
+  }, [date, editForm]);
 
   const submitEvent = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const response = await storeEvent(form);
-    if (response.success) {
-      setIsOpen(false);
-      setForm(emptyForm);
+    if (editForm.id) {
+      const response = await updateEvent(form);
+      if (response.success) {
+        setIsOpen(false);
+        setEditForm(emptyForm);
+      } else {
+        console.error(response);
+        alert(response.message);
+      }
     } else {
-      console.error(response);
-      alert(response.message);
+      const response = await storeEvent(form);
+      if (response.success) {
+        setIsOpen(false);
+        setEditForm(emptyForm);
+      } else {
+        console.error(response);
+        alert(response.message);
+      }
     }
   };
 
@@ -122,4 +134,4 @@ function AddEvent({ isOpen, setIsOpen, editForm }: AddEventProps) {
   );
 }
 
-export default AddEvent;
+export default AddEventForm;
