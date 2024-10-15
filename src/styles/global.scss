@@ -195,8 +195,8 @@ body,
       &:hover,
       &.selected {
         .cell-value {
-          background-color: $card;
-          color: $primary;
+          background-color: $primary;
+          color: $card;
         }
       }
     }
