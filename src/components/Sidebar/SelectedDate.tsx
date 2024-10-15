@@ -6,7 +6,7 @@ function SelectedDate() {
 
   return (
     <div className="cell big bold" id="selected-date">
-      <span>{format(date, "EEEE d MMMM yyyy, H:mm")}</span>
+      <span>{format(date, "EEEE d MMMM yyyy")}</span>
     </div>
   );
 }
