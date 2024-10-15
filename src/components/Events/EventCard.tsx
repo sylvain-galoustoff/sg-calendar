@@ -6,13 +6,15 @@ import { IoTrash, IoPencil } from "react-icons/io5";
 
 type EventCardType = {
   data: EventType;
+  toggleForm: (status: boolean) => void;
 };
 
-function EventCard({ data }: EventCardType) {
+function EventCard({ data, toggleForm }: EventCardType) {
   const { setEditForm } = useEditEventContext();
 
   const editEvent = () => {
     setEditForm(data);
+    toggleForm(true);
   };
 
   const dropEvent = () => {

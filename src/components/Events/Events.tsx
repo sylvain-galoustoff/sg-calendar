@@ -40,7 +40,7 @@ function Events() {
   };
 
   const renderCards = selectedDateEvents.map((event) => (
-    <EventCard key={event.id} data={event} />
+    <EventCard key={event.id} data={event} toggleForm={toggleForm} />
   ));
 
   return (

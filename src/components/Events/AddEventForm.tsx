@@ -68,6 +68,11 @@ function AddEventForm({ isOpen, setIsOpen }: AddEventProps) {
     }));
   };
 
+  const cancelForm = () => {
+    setIsOpen(false);
+    setForm(emptyForm);
+  };
+
   return (
     <form
       id="add-event-form"
@@ -127,7 +132,7 @@ function AddEventForm({ isOpen, setIsOpen }: AddEventProps) {
         />
       </div>
       <div className="button-group">
-        <ButtonIcon classNames="ghost" icon={<IoClose />} />
+        <ButtonIcon classNames="ghost" icon={<IoClose />} onClick={cancelForm} />
         <ButtonIcon type="submit" classNames="primary" icon={<IoCheckmark />} />
       </div>
     </form>
