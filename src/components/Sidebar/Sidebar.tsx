@@ -4,8 +4,13 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
 import Events from "../Events/Events";
 import Forms from "../auth/Forms";
+import { EventType } from "../../@types/types";
 
-function Sidebar() {
+type SidebarProps = {
+  events: EventType[];
+};
+
+function Sidebar({ events }: SidebarProps) {
   const [isConnectedUser, setIsConnectedUser] = useState(false);
 
   useEffect(() => {
@@ -21,7 +26,7 @@ function Sidebar() {
   return (
     <>
       <SelectedDate />
-      {isConnectedUser ? <Events /> : <Forms />}
+      {isConnectedUser ? <Events events={events} /> : <Forms />}
     </>
   );
 }

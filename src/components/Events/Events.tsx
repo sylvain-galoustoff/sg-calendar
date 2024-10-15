@@ -3,30 +3,17 @@ import AddEventToggle from "./AddEventToggle";
 import AddEventForm from "./AddEventForm";
 import EventCard from "./EventCard";
 import { EventType } from "../../@types/types";
-import { observeEvents } from "../../api/events";
-import { auth } from "../../firebase";
 import { useDateContext } from "../../context/DateContext";
 import { EditEventContextProvider } from "../../context/EditEventContext";
 
-function Events() {
+type EventsProps = {
+  events: EventType[];
+};
+
+function Events({ events }: EventsProps) {
   const { date } = useDateContext();
   const [showForm, setShowForm] = useState(false);
-  const [events, setEvents] = useState<EventType[]>([]);
   const [selectedDateEvents, setSelectedDateEvents] = useState<EventType[]>([]);
-
-  useEffect(() => {
-    if (auth.currentUser) {
-      const unsubscribeEvents = observeEvents(
-        auth.currentUser.uid,
-        (data: EventType[]) => {
-          setEvents(data);
-        }
-      );
-      return () => {
-        unsubscribeEvents();
-      };
-    }
-  }, []);
 
   useEffect(() => {
     const selectedTimestamp = date.getTime();
