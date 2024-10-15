@@ -6,12 +6,10 @@ import { getDateSlug } from "../../utils/dates";
 import { EventType } from "../../@types/types";
 
 type CalendarProps = {
-  events?: EventType[];
+  events: EventType[];
 };
 
 function Calendar({ events }: CalendarProps) {
-  console.log(events);
-
   const params = useParams();
   const navigate = useNavigate();
 
@@ -25,7 +23,7 @@ function Calendar({ events }: CalendarProps) {
   return (
     <div id="calendar">
       <DateSelect />
-      <Grid />
+      <Grid events={events} />
     </div>
   );
 }

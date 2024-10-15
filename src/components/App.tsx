@@ -7,22 +7,28 @@ import { useEffect, useState } from "react";
 import { auth } from "../firebase";
 import { observeEvents } from "../api/events";
 import { EventType } from "../@types/types";
+import { onAuthStateChanged } from "firebase/auth";
 
 function App() {
   const [events, setEvents] = useState<EventType[]>([]);
 
   useEffect(() => {
-    if (auth.currentUser) {
-      const unsubscribeEvents = observeEvents(
-        auth.currentUser.uid,
-        (data: EventType[]) => {
+    const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const unsubscribeEvents = observeEvents(user.uid, (data: EventType[]) => {
           setEvents(data);
-        }
-      );
-      return () => {
-        unsubscribeEvents();
-      };
-    }
+        });
+        return () => {
+          unsubscribeEvents();
+        };
+      }
+    });
+
+    return () => {
+      if (unsubscribeAuth) {
+        unsubscribeAuth();
+      }
+    };
   }, []);
 
   return (
@@ -31,7 +37,7 @@ function App() {
         <UserBar />
         <div id="app-content">
           <Routes>
-            <Route path="*" element={<Calendar />} />
+            <Route path="*" element={<Calendar events={events} />} />
             <Route path="/:year/:month" element={<Calendar events={events} />} />
           </Routes>
           <div id="sidebar">

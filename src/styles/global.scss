@@ -198,8 +198,23 @@ body,
           background-color: $primary;
           color: $card;
         }
+
+        .event-marker {
+          background-color: $card;
+        }
       }
     }
+  }
+
+  .event-marker {
+    width: 8px;
+    aspect-ratio: 1;
+    background-color: $primary;
+    border-radius: 4px;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+
   }
 }
 

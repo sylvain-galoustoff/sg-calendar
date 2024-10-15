@@ -4,13 +4,18 @@ import { getMonthFromParams } from "../../utils/dates";
 import { getDaysInMonth, startOfMonth, endOfMonth } from "date-fns";
 import Cell from "./Cell";
 import EmptyCell from "./EmptyCell";
+import { EventType } from "../../@types/types";
 
 type ParamsType = {
   year?: string;
   month?: string;
 };
 
-function Grid() {
+type GridProps = {
+  events: EventType[];
+};
+
+function Grid({ events }: GridProps) {
   const params = useParams<ParamsType>();
   const today = new Date();
   const todayAtMidnight = new Date(
@@ -44,7 +49,7 @@ function Grid() {
     Array.from({ length: numberOfOffsetDays }, (_, index) => <EmptyCell key={index} />);
 
   const renderCells = Array.from({ length: numberOfDays }, (_, index) => (
-    <Cell key={index} day={index + 1} today={todayAtMidnight} />
+    <Cell key={index} day={index + 1} today={todayAtMidnight} events={events} />
   ));
 
   const rendernumberOfFillerDays = Array.from(
