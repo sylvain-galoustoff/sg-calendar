@@ -50,7 +50,7 @@ function Cell({ day, today, events }: CellProps) {
 
   return (
     <div
-      className={`cell ${isToday ? "today" : "not-today"} ${
+      className={`cell not-empty ${isToday ? "today" : "not-today"} ${
         isSelected ? "selected" : "not-selected"
       }`}
       tabIndex={0}
