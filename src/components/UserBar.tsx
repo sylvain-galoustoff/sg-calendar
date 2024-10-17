@@ -10,13 +10,16 @@ function UserBar() {
   return (
     <div id="user-bar">
       <div id="user-bar-left">
-        <IoPersonCircleOutline /> Connecté en tant qu'invité
+        <IoPersonCircleOutline />{" "}
+        {auth.currentUser ? "Connecté en tant qu'invité" : "Vous n'êtes pas connecté"}
       </div>
-      <div id="user-bar-right">
-        <button className="flat" type="button" onClick={userLogOut}>
-          <IoPower /> Déconnection
-        </button>
-      </div>
+      {auth.currentUser && (
+        <div id="user-bar-right">
+          <button className="flat" type="button" onClick={userLogOut}>
+            <IoPower /> Déconnection
+          </button>
+        </div>
+      )}
     </div>
   );
 }
