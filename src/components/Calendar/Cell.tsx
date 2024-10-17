@@ -1,6 +1,7 @@
 import { useEffect, useState, KeyboardEvent } from "react";
 import { useParams } from "react-router-dom";
 import { useDateContext } from "../../context/DateContext";
+import { AnimatePresence, motion } from "framer-motion";
 import { EventType } from "../../@types/types";
 
 type CellProps = {
@@ -11,6 +12,7 @@ type CellProps = {
 
 function Cell({ day, today, events }: CellProps) {
   const params = useParams();
+
   const { date, setDate } = useDateContext();
   const [isToday, setIsToday] = useState(false);
   const [isSelected, setIsSelected] = useState(false);
@@ -49,7 +51,7 @@ function Cell({ day, today, events }: CellProps) {
   };
 
   return (
-    <div
+    <motion.div
       className={`cell not-empty ${isToday ? "today" : "not-today"} ${
         isSelected ? "selected" : "not-selected"
       }`}
@@ -58,10 +60,21 @@ function Cell({ day, today, events }: CellProps) {
       onKeyDown={selectDateByKey}
     >
       <div className="cell-content">
-        <div className="span cell-value">{day}</div>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={`${day}/${params.month}/${params.year}`}
+            initial={{ transform: "rotateX(-90deg)" }}
+            animate={{ transform: "rotateX(0)" }}
+            exit={{ transform: "rotateX(90deg)" }}
+            transition={{ ease: "easeOut", duration: 0.15 }}
+            className="span cell-value"
+          >
+            {day}
+          </motion.div>
+        </AnimatePresence>
         {hasEvent && <div className="event-marker" />}
       </div>
-    </div>
+    </motion.div>
   );
 }
 

@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { IoCaretBack, IoCaretForward } from "react-icons/io5";
 import ButtonIcon from "../common/ButtonIcon";
 import { getMonthFromParams, months } from "../../utils/dates";
+import { AnimatePresence, motion } from "framer-motion";
 
 function DateSelect() {
   const params = useParams();
@@ -46,10 +47,27 @@ function DateSelect() {
         <ButtonIcon
           icon={<IoCaretBack />}
           id="previous-month"
+          classNames="ghost"
           onClick={handlePreviousMonth}
         />
-        <p id="month-value">{months[currentMonth]}</p>
-        <ButtonIcon icon={<IoCaretForward />} id="next-month" onClick={handleNextMonth} />
+        <AnimatePresence mode="wait">
+          <motion.p
+            id="month-value"
+            key={currentMonth}
+            initial={{ transform: "rotateX(-90deg)" }}
+            animate={{ transform: "rotateX(0)" }}
+            exit={{ transform: "rotateX(90deg)" }}
+            transition={{ ease: "easeOut", duration: 0.15 }}
+          >
+            {months[currentMonth]}
+          </motion.p>
+        </AnimatePresence>
+        <ButtonIcon
+          icon={<IoCaretForward />}
+          classNames="ghost"
+          id="next-month"
+          onClick={handleNextMonth}
+        />
       </div>
       <div className="cell" id="year-select">
         {currentYear}

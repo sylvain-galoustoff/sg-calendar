@@ -91,20 +91,14 @@ body,
   gap: 32px;
   padding: 32px;
   border-top-left-radius: 8px;
-
-  .button-icon {
-    color: $textLight;
-
-    &:hover {
-      color: $card;
-      background-color: $textLight;
-    }
-  }
+  perspective: 1000px;
 }
 
 #month-value {
   width: 100px;
   text-align: center;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
 }
 
 #year-select {
