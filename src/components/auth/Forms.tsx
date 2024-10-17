@@ -3,7 +3,7 @@ import Login from "./Login";
 import Signin from "./Signin";
 
 function Forms() {
-  const [form, setForm] = useState("signin");
+  const [form, setForm] = useState("login");
 
   const toggleForm = (formName: "login" | "signin") => {
     setForm(formName);
