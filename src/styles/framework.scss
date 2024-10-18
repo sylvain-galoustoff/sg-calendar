@@ -71,40 +71,30 @@ a.button {
     font-size: .9rem;
   }
 
+  &:hover,
+  &:focus-visible {
+    background-color: $primary;
+    color: $card;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $primary;
+    outline-offset: 2px;
+  }
+
   &.ghost {
     background-color: transparent;
     color: $text;
-
-    &:hover,
-    &:focus-visible {
-      background-color: $primary;
-      color: $card;
-    }
-
-    &:focus-visible {
-      outline: 2px solid $primary;
-      outline-offset: 2px;
-    }
   }
 
   &.text {
     background-color: $text;
     color: $card;
-
-    &:hover,
-    &:focus-visible {
-      background-color: $primary;
-    }
   }
 
   &.text-light {
     background-color: $textLight;
     color: $card;
-
-    &:hover,
-    &:focus-visible {
-      background-color: $primary;
-    }
   }
 }
 
@@ -148,6 +138,7 @@ a.button {
     font-size: 1rem;
     font-family: $font;
     color: $textLight;
+    @include trans;
 
     &:focus-visible {
       outline: none;

@@ -51,7 +51,7 @@ function Cell({ day, today, events }: CellProps) {
   };
 
   return (
-    <motion.div
+    <div
       className={`cell not-empty ${isToday ? "today" : "not-today"} ${
         isSelected ? "selected" : "not-selected"
       }`}
@@ -74,7 +74,7 @@ function Cell({ day, today, events }: CellProps) {
         </AnimatePresence>
         {hasEvent && <div className="event-marker" />}
       </div>
-    </motion.div>
+    </div>
   );
 }
 

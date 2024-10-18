@@ -211,6 +211,7 @@ body,
 #sidebar {
   width: 33.33%;
   border-radius: $corner;
+  background-color: $card;
   overflow-y: hidden;
   display: flex;
   flex-direction: column;
